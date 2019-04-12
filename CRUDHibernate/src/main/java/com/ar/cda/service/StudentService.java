@@ -17,4 +17,11 @@ public interface StudentService
 	public List<Student> getAllStudents();
 	
 	public List<Student> busqueda(String columna, String Letra); 
+	
+	public List<Student> busquedaEdad(String columna, int Edad);
+
+	public List<Student> busquedaRangoEdad(String columna, int consultaEdadMinima, int consultaEdadMaxima);
+	
+	public List<Student> busquedaPromedio(String columna, double promedio);
+	
 }

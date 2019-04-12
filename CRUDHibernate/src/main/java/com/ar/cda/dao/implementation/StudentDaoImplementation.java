@@ -13,47 +13,78 @@ import main.java.com.ar.cda.dao.StudentDao;
 import main.java.com.ar.cda.model.Student;
 
 @Repository
-public class StudentDaoImplementation implements StudentDao {
+public class StudentDaoImplementation implements StudentDao 
+{
 	@Autowired
 	private SessionFactory session;
-	private Criteria crit;
+	private Criteria criteria;
 	
-	@SuppressWarnings("unused")
 	private void iniciarCriteria()
 	{
-		 this.crit = session.getCurrentSession().createCriteria(Student.class);
+		 this.criteria = session.getCurrentSession().createCriteria(Student.class);
 	}
 
 	@Override
-	public void add(Student student) {
+	public void add(Student student) 
+	{
 		session.getCurrentSession().save(student);
 	}
 
 	@Override
-	public void edit(Student student) {
+	public void edit(Student student) 
+	{
 		session.getCurrentSession().update(student);
 	}
 
 	@Override
-	public void delete(int studentId) {
+	public void delete(int studentId) 
+	{
 		session.getCurrentSession().delete(this.getStudent(studentId));
 	}
 
 	@Override
-	public Student getStudent(int studentId) {
+	public Student getStudent(int studentId) 
+	{
 		return (Student) session.getCurrentSession().get(Student.class, studentId);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Student> getAllStudents() {
+	public List<Student> getAllStudents() 
+	{
 		return session.getCurrentSession().createQuery("from Student").list();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Student> busqueda(String columna, String Letra) {//Busca Students 
+	@Override
+	public List<Student> busqueda(String columna, String consulta) //Busca Students 
+	{ 
 		iniciarCriteria();
-		return this.crit.add(Restrictions.like(columna, Letra + "%", MatchMode.ANYWHERE)).list();	
-
+		return this.criteria.add(Restrictions.like(columna, consulta + "%", MatchMode.ANYWHERE)).list();	
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> busquedaEdad(String columna, int consultaEdad) //Busca Students por edad 
+	{ 
+		iniciarCriteria();
+		return this.criteria.add(Restrictions.like(columna, consultaEdad)).list();	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> busquedaRangoEdad(String columna, int consultaEdadMinima, int consultaEdadMaxima) //Busca Students por edad 
+	{ 
+		iniciarCriteria();
+		return this.criteria.add(Restrictions.between(columna, consultaEdadMinima, consultaEdadMaxima)).list();	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> busquedaPromedio(String columna, double promedio)
+	{
+		iniciarCriteria();
+		return this.criteria.add(Restrictions.between(columna, promedio, 9.99)).list();
+	}
+	
 }

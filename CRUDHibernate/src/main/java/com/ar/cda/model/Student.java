@@ -28,17 +28,25 @@ public class Student
 	@Column
 	private String Sexo;
 	
-//	@Column
-//	private int añoCursada;
+	@Column
+	private int Edad;
 	
-	public Student(int studentId, String nombre, String apellido, String localidad, String sexo) 
+	@Column
+	private double Promedio;
+	
+	public Student(int studentId, String nombre, String apellido, String localidad, String sexo, int edad, double promedio) 
 	{
 		this.id = studentId;
 		this.Nombre = nombre;
 		this.Apellido = apellido;
 		this.Localidad = localidad;
-		this.Sexo = sexo;
-		//this.añoCursada = añoCursada;
+		this.Sexo = sexo;	
+		this.Edad = edad;
+		this.Promedio = promedio;
+	}
+	
+	public Student(String nombre) {
+		this.Nombre = nombre;
 	}
 
 	public Student() {}
@@ -92,17 +100,23 @@ public class Student
 	{
 		this.Sexo = sexo;
 	}
-
-
+	public void setEdad(int edad)
+	{
+		this.Edad = edad;
+	}
+	public int getEdad()
+	{
+		return this.Edad;
+	}
 	
-	
-//	public int getAnioCursada() 
-//	{
-//		return añoCursada;
-//	}
-//	
-//	public void setAnioCursada(int añoCursada) 
-//	{
-//		this.añoCursada = añoCursada;
-//	}
+	public void setPromedio(double promedio)
+	{
+		this.Promedio = promedio;
+	}
+	public double getPromedio()
+	{
+		return this.Promedio;
+	}
+
 }
+

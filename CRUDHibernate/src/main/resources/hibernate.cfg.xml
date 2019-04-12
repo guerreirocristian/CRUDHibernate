@@ -8,3 +8,5 @@
         <mapping class="main.java.com.ar.cda.model.Student"/>
     </session-factory>         
 </hibernate-configuration>
+
+<!-- En mapping class van las Entidades que se usaran en el programa. En este caso es Student pero puede ser cualquier Entity que sea una tabla en nuestra BD -->

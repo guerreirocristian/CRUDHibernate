@@ -50,6 +50,7 @@ public class StudentServiceImplementation implements StudentService
     {
        	return studentDao.getAllStudents();
     }
+	
 
 	@Override
 	@Transactional
@@ -58,6 +59,25 @@ public class StudentServiceImplementation implements StudentService
 		return studentDao.busqueda(columna, Letra);
 	}
 
+	@Override
+	@Transactional
+	public List<Student> busquedaEdad(String columna, int Edad)
+	{
+		return studentDao.busquedaEdad(columna, Edad);
+	}
 	
+	@Override
+	@Transactional
+	public List<Student> busquedaRangoEdad(String columna, int consultaEdadMinima, int consultaEdadMaxima) //Busca Students por edad 
+	{ 
+		return studentDao.busquedaRangoEdad(columna, consultaEdadMinima, consultaEdadMaxima);
+	}
+	
+	@Override
+	@Transactional
+	public List<Student> busquedaPromedio(String columna, double promedio)
+	{
+		return studentDao.busquedaPromedio(columna, promedio);
+	}
 
 }
