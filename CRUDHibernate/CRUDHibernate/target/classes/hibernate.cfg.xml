@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"> 
+     
+<hibernate-configuration>
+    <session-factory>        
+    	<property name="hbm2ddl.auto">update</property>
+    	<mapping class="main.java.com.ar.cda.model.Student"/>
+	</session-factory>         
+</hibernate-configuration>
+
+<!-- En mapping class van las Entidades que se usaran en el programa. En este caso es Student pero puede ser cualquier Entity que sea una tabla en nuestra BD -->
